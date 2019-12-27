@@ -93,3 +93,10 @@ fn test_hsv_to_hsl() {
 		assert val.eq_approx(item.hsl)
 	}
 }
+
+fn test_hsv_to_rgb() {
+	for item in items_to_test {
+		val := item.hsv.rgb()
+		assert val.eq_approx(item.rgb)
+	}
+}
