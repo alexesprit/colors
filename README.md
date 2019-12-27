@@ -15,4 +15,9 @@ fn main() {
 }
 ```
 
+```
+HSL: { H: 83, S: 0.764706, L: 0.333333 }
+HSV: { H: 83, S: 0.866667, V: 0.588235 }
+```
+
 For more details see `colors.v` file.
