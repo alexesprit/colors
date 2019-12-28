@@ -1,6 +1,6 @@
 # colors
 
-`colors` is a library for conversion between different color models written in V.
+A library for color transformation and conversion between different color models written in V.
 
 ## Usage
 

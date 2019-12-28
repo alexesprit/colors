@@ -82,6 +82,19 @@ pub fn (a RGB) eq_approx(b RGB) bool {
 }
 
 /*
+ * Transformation.
+ */
+
+pub fn (val RGB) grayscale() RGB {
+	gray :=
+		round_int(f32(val.r) * 0.299) +
+		round_int(f32(val.g) * 0.587) +
+		round_int(f32(val.b) * 0.114)
+
+	return RGB { gray, gray, gray }
+}
+
+/*
  * RGB section.
  */
 
