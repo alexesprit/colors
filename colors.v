@@ -57,7 +57,7 @@ pub fn (val HSV) str() string {
  * Comparison.
  */
 
-// eq_approx check if a given HSL struct is approximalely equal to a caller.
+// eq_approx checks if a given HSL struct is approximalely equal to a caller.
 pub fn (a HSL) eq_approx(b HSL) bool {
 	return
 		delta_ok(a.h, b.h, HueThreshold) &&
@@ -65,7 +65,7 @@ pub fn (a HSL) eq_approx(b HSL) bool {
 		delta_ok(a.l, b.l, LightnessThreshold)
 }
 
-// eq_approx check if a given HSV struct is approximalely equal to a caller.
+// eq_approx checks if a given HSV struct is approximalely equal to a caller.
 pub fn (a HSV) eq_approx(b HSV) bool {
 	return
 		delta_ok(a.h, b.h, HueThreshold) &&
@@ -73,7 +73,7 @@ pub fn (a HSV) eq_approx(b HSV) bool {
 		delta_ok(a.v, b.v, ValueThreshold)
 }
 
-// eq_approx check if a given RGB struct is approximalely equal to a caller.
+// eq_approx checks if a given RGB struct is approximalely equal to a caller.
 pub fn (a RGB) eq_approx(b RGB) bool {
 	return
 		delta_ok(a.r, b.r, RgbThreshold) &&
