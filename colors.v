@@ -309,8 +309,8 @@ pub fn (val HSV) rgb() RGB {
 
 const (
 	HueThreshold = 1
-	SaturationThreshold = 0.005
-	LightnessThreshold = 0.005
+	SaturationThreshold = 0.001
+	LightnessThreshold = 0.001
 	ValueThreshold = 0.002
 	RgbThreshold = 1
 )
