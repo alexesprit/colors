@@ -8,7 +8,9 @@
 
 module colors
 
-import math
+import (
+	math strconv
+)
 
 // Structure representing RGB color model.
 pub struct RGB {
@@ -44,6 +46,22 @@ pub fn from_hex(val int) RGB {
 	b := (val & 0xFF)
 
 	return RGB { r, g, b }
+}
+
+pub fn parse(input string) ?RGB {
+	mut raw_value := input
+	if raw_value.starts_with('0x') {
+		raw_value = raw_value[2..]
+	} else if raw_value.starts_with('#') {
+		raw_value = raw_value[1..]
+	}
+
+	value := int(strconv.parse_int(raw_value, 16, 0))
+	if (value == 0 && raw_value != '0') {
+		return error('Invalid input: $value')
+	}
+
+	return from_hex(value)
 }
 
 /*
