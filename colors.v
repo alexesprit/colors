@@ -40,10 +40,14 @@ pub:
  * Constructors.
  */
 
-pub fn from_hex(val int) RGB {
-	r := (val & 0xFF0000) >> 16
-	g := (val & 0xFF00) >> 8
-	b := (val & 0xFF)
+pub fn from_hex(input int) ?RGB {
+	if (input < 0) {
+		return error('Negative input: $input')
+	}
+
+	r := (input & 0xFF0000) >> 16
+	g := (input & 0xFF00) >> 8
+	b := (input & 0xFF)
 
 	return RGB { r, g, b }
 }
