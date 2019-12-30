@@ -53,6 +53,12 @@ pub fn (val HSV) str() string {
 	return '{ H: $val.h, S: $val.s, V: $val.v }'
 }
 
+// hex returns a string representation of RGB struct in hexadecimal format.
+pub fn (val RGB) hex() string {
+	color := (val.r << 16) & 0xFF0000 | (val.g << 8) & 0xFF00 | val.b & 0xFF
+	return color.hex()
+}
+
 /*
  * Comparison.
  */

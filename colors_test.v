@@ -4,6 +4,7 @@ struct TestItem {
 	rgb colors.RGB
 	hsl colors.HSL
 	hsv colors.HSV
+	hex int
 }
 
 const (
@@ -12,21 +13,25 @@ const (
 			rgb: colors.RGB { 255, 125, 10 }
 			hsl: colors.HSL { 28, 1.0, 0.52 }
 			hsv: colors.HSV { 28, 0.961, 1.0 }
+			hex: 0xFF7D0A
 		},
 		TestItem {
 			rgb: colors.RGB { 125, 255, 10 }
 			hsl: colors.HSL { 92, 1.00, 0.52 }
-			hsv: colors.HSV { 92, 0.961, 1.0 }
+			hsv: colors.HSV { 92, 0.961, 1.0 },
+			hex: 0x7DFF0A
 		},
 		TestItem {
 			rgb: colors.RGB { 10, 125, 255 }
 			hsl: colors.HSL { 212, 1.00, 0.52 }
 			hsv: colors.HSV { 212, 0.961, 1.0 }
+			hex: 0x0A7DFF
 		},
 		TestItem {
 			rgb: colors.RGB { 50, 100, 150 }
 			hsl: colors.HSL { 210, 0.50, 0.392 }
 			hsv: colors.HSV { 210, 0.667, 0.588 }
+			hex: 0x326496
 		}
 	]
 )
@@ -44,6 +49,12 @@ fn test_self() {
 		// HSV
 		assert item.hsv.hsl().hsv().eq_approx(item.hsv)
 		assert item.hsv.rgb().hsv().eq_approx(item.hsv)
+	}
+}
+
+fn test_hex() {
+	for item in items_to_test {
+		assert item.rgb.hex() == item.hex.hex()
 	}
 }
 
