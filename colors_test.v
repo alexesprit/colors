@@ -72,7 +72,7 @@ fn test_grayscale() {
 	val := colors.RGB { 123, 12, 89 }
 	gray := colors.RGB { 54, 54, 54 }
 
-	assert val.grayscale().eq_approx(gray)
+	assert val.grayscale().eq(gray)
 }
 
 fn test_lighten_darken() {
