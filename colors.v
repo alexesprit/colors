@@ -60,11 +60,11 @@ pub fn parse(input string) ?RGB {
 		raw_value = raw_value[1..]
 	}
 
-	value := int(strconv.parse_int(raw_value, 16, 0))
-	if (value == 0 && raw_value != '0') {
-		return error('Invalid input: $value')
+	if !is_number(raw_value) {
+		return error('Invalid input: $input')
 	}
 
+	value := int(strconv.parse_int(raw_value, 16, 0))
 	return from(value)
 }
 
@@ -423,4 +423,14 @@ fn round_int(value f64) int {
 
 fn delta_ok(a, b, threshold f64) bool {
 	return math.abs(a - b) <= threshold
+}
+
+fn is_number(input string) bool {
+	for c in input {
+		if !c.is_hex_digit() {
+			return false
+		}
+	}
+
+	return true
 }

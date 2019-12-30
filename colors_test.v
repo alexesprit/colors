@@ -68,9 +68,17 @@ fn test_parse() {
 		assert color.eq(color_to_test)
 	}
 
+	black_color_1 := colors.RGB { 0, 0, 0 }
+	black_color_2 := colors.parse('0x000000') or {
+		assert false
+		return
+	}
+	assert black_color_1.eq(black_color_2)
+
 	invalid_raw_color := '%FF9933'
 	colors.parse(invalid_raw_color) or {
 		assert true
+		return
 	}
 }
 
