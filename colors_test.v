@@ -58,6 +58,12 @@ fn test_hex() {
 	}
 }
 
+fn test_from() {
+	for item in items_to_test {
+		assert colors.from_hex(item.hex).eq(item.rgb)
+	}
+}
+
 /*
  * Transformation.
  */
