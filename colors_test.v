@@ -13,27 +13,27 @@ const (
 			rgb: colors.RGB { 255, 125, 10 }
 			hsl: colors.HSL { 28, 1.0, 0.52 }
 			hsv: colors.HSV { 28, 0.961, 1.0 }
-			hex: 0xFF7D0A
 		},
 		TestItem {
 			rgb: colors.RGB { 125, 255, 10 }
 			hsl: colors.HSL { 92, 1.00, 0.52 }
 			hsv: colors.HSV { 92, 0.961, 1.0 },
-			hex: 0x7DFF0A
 		},
 		TestItem {
 			rgb: colors.RGB { 10, 125, 255 }
 			hsl: colors.HSL { 212, 1.00, 0.52 }
 			hsv: colors.HSV { 212, 0.961, 1.0 }
-			hex: 0x0A7DFF
 		},
 		TestItem {
 			rgb: colors.RGB { 50, 100, 150 }
 			hsl: colors.HSL { 210, 0.50, 0.392 }
 			hsv: colors.HSV { 210, 0.667, 0.588 }
-			hex: 0x326496
 		}
 	]
+
+	color_to_test = colors.RGB { 0xFF, 0x99, 0x33 }
+	grayscale_to_test = colors.RGB { 0xAC, 0xAC, 0xAC }
+	hex_to_test = 0xFF9933
 )
 
 fn test_self() {
@@ -53,15 +53,34 @@ fn test_self() {
 }
 
 fn test_hex() {
-	for item in items_to_test {
-		assert item.rgb.hex() == item.hex.hex()
+	assert color_to_test.hex() == hex_to_test.hex()
+}
+
+fn test_parse() {
+	raw_colors := ['FF9933', '#FF9933', '0xFF9933']
+
+	for raw_color in raw_colors {
+		color := colors.parse(raw_color) or {
+			assert false
+			continue
+		}
+
+		assert color.eq(color_to_test)
+	}
+
+	invalid_raw_color := '%FF9933'
+	colors.parse(invalid_raw_color) or {
+		assert true
 	}
 }
 
 fn test_from() {
-	for item in items_to_test {
-		assert colors.from_hex(item.hex).eq(item.rgb)
+	color := colors.from(hex_to_test) or {
+		assert false
+		return
 	}
+
+	assert color.eq(color_to_test)
 }
 
 /*
@@ -69,10 +88,7 @@ fn test_from() {
  */
 
 fn test_grayscale() {
-	val := colors.RGB { 123, 12, 89 }
-	gray := colors.RGB { 54, 54, 54 }
-
-	assert val.grayscale().eq(gray)
+	assert color_to_test.grayscale().eq(grayscale_to_test)
 }
 
 fn test_lighten_darken() {
