@@ -35,6 +35,18 @@ pub:
 }
 
 /*
+ * Constructors.
+ */
+
+pub fn from_hex(val int) RGB {
+	r := (val & 0xFF0000) >> 16
+	g := (val & 0xFF00) >> 8
+	b := (val & 0xFF)
+
+	return RGB { r, g, b }
+}
+
+/*
  * String representation.
  */
 
