@@ -112,6 +112,28 @@ pub fn (val RGB) grayscale() RGB {
 	return RGB { gray, gray, gray }
 }
 
+// lighten changes lightness of a given HSL struct and returns new struct
+pub fn (val HSL) lighten(value f32) HSL {
+	l := between(val.l + value, 0, 1)
+	return HSL { val.h, val.s, l }
+}
+
+// darken changes lightness of a given HSL struct and returns new struct
+pub fn (val HSL) darken(value f32) HSL {
+	return val.lighten(-value)
+}
+
+// saturate changes saturation of a given HSL struct and returns new struct
+pub fn (val HSL) saturate(value f32) HSL {
+	s := between(val.s + value, 0, 1)
+	return HSL { val.h, s, val.l }
+}
+
+// desaturate changes saturation of a given HSL struct and returns new struct
+pub fn (val HSL) desaturate(value f32) HSL {
+	return val.saturate(-value)
+}
+
 /*
  * RGB section.
  */
@@ -352,6 +374,10 @@ fn max_value(a, b, c f64) f64 {
 
 fn min_value(a, b, c f64) f64 {
 	return math.min(math.min(a, b), c)
+}
+
+fn between(a, min, max f64) f64 {
+	return math.min(math.max(a, min), max)
 }
 
 fn round_int(value f64) int {
