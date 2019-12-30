@@ -66,8 +66,6 @@ fn test_grayscale() {
 	val := colors.RGB { 123, 12, 89 }
 	gray := colors.RGB { 54, 54, 54 }
 
-	println(gray)
-
 	assert val.grayscale().eq_approx(gray)
 }
 
