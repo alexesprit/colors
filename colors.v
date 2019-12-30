@@ -40,7 +40,7 @@ pub:
  * Constructors.
  */
 
-pub fn from_hex(input int) ?RGB {
+pub fn from(input int) ?RGB {
 	if (input < 0) {
 		return error('Negative input: $input')
 	}
@@ -65,7 +65,7 @@ pub fn parse(input string) ?RGB {
 		return error('Invalid input: $value')
 	}
 
-	return from_hex(value)
+	return from(value)
 }
 
 /*
