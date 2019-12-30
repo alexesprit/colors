@@ -99,6 +99,21 @@ pub fn (a RGB) eq_approx(b RGB) bool {
 		delta_ok(a.b, b.b, RgbThreshold)
 }
 
+// eq checks if a given HSL struct is equal to a caller.
+pub fn (a HSL) eq(b HSL) bool {
+	return a.h == b.h && a.s == b.s && a.l == b.l
+}
+
+// eq checks if a given HSV struct is equal to a caller.
+pub fn (a HSV) eq(b HSV) bool {
+	return a.h == b.h && a.s == b.s && a.v == b.v
+}
+
+// eq checks if a given RGB struct is equal to a caller.
+pub fn (a RGB) eq(b RGB) bool {
+	return a.r == b.r && a.g == b.g && a.b == b.b
+}
+
 /*
  * Transformation.
  */
