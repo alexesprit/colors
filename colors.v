@@ -1,9 +1,10 @@
 /*
  * This module provides structs represent different color models,
  * and functions to work with models:
- *  - functions to convert values between different models
+ *  - functions to convert colors between differen color models
  *  - functions to compare two instances of a color model
- *  - functions to return a string representation of a color model instance
+ *  - functions to return a string representation of a color model
+ *  - functions to transform colors
  */
 
 module colors

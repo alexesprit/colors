@@ -2,6 +2,13 @@
 
 A library for color transformation and conversion between different color models written in V.
 
+## Features
+
+ - Functions to convert colors between different color models
+ - Functions to compare two instances of a color model
+ - Functions to return a string representation of a color model
+ - Functions to transform colors
+
 ## Usage
 
 ```v
