@@ -61,6 +61,13 @@ pub fn parse(input string) ?RGB {
 		raw_value = raw_value[1..]
 	}
 
+	if raw_value.len == 3 && input.starts_with('#') {
+		r := raw_value[0].str()
+		g := raw_value[1].str()
+		b := raw_value[2].str()
+		raw_value = '$r$r$g$g$b$b'
+	}
+
 	if !is_number(raw_value) {
 		return error('Invalid input: $input')
 	}

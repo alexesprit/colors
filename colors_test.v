@@ -57,7 +57,7 @@ fn test_hex() {
 }
 
 fn test_parse() {
-	raw_colors := ['FF9933', '#FF9933', '0xFF9933']
+	raw_colors := ['FF9933', '#FF9933', '0xFF9933', '#f93']
 
 	for raw_color in raw_colors {
 		color := colors.parse(raw_color) or {
