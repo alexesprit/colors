@@ -82,17 +82,21 @@ pub fn parse(input string) ?RGB {
 
 // str returns a string representation of a RGB struct.
 pub fn (val RGB) str() string {
-	return '{ R: $val.r, G: $val.g, B: $val.b }'
+	return 'rgb($val.r, $val.g, $val.b)'
 }
 
 // str returns a string representation of a HSL struct.
 pub fn (val HSL) str() string {
-	return '{ H: $val.h, S: $val.s, L: $val.l }'
+	s_percent := to_percent(val.s)
+	l_percent := to_percent(val.l)
+	return 'hsl($val.h, $s_percent, $l_percent)'
 }
 
 // str returns a string representation of a HSV struct.
 pub fn (val HSV) str() string {
-	return '{ H: $val.h, S: $val.s, V: $val.v }'
+	s_percent := to_percent(val.s)
+	v_percent := to_percent(val.v)
+	return 'hsv($val.h, $s_percent, $v_percent)'
 }
 
 // hex returns a string representation of RGB struct in hexadecimal format.
@@ -441,4 +445,9 @@ fn is_number(input string) bool {
 	}
 
 	return true
+}
+
+fn to_percent(value f32) string {
+	percent := round_int(value * 100)
+	return '$percent%'
 }
