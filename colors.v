@@ -401,7 +401,7 @@ const (
 	HueThreshold = 1
 	SaturationThreshold = 0.001
 	LightnessThreshold = 0.001
-	ValueThreshold = 0.002
+	ValueThreshold = 0.001
 	RgbThreshold = 1
 )
 
