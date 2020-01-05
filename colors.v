@@ -183,6 +183,12 @@ pub fn (val HSL) desaturate(value f32) HSL {
 	return val.saturate(-value)
 }
 
+// rotate changes hue of a given HSL struct and returns new struct
+pub fn (val HSL) rotate(degrees int) HSL {
+	h := int(math.abs(val.h + degrees)) % 360
+	return HSL { h, val.s, val.l }
+}
+
 /*
  * RGB section.
  */

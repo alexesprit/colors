@@ -99,7 +99,7 @@ fn test_grayscale() {
 	assert color_to_test.grayscale().eq(grayscale_to_test)
 }
 
-fn test_lighten_darken() {
+fn test_transfort() {
 	value := 0.05
 	color := colors.HSL { 235, 0.85, 0.85 }
 	darkened := colors.HSL { 235, 0.85, 0.80 }
@@ -113,11 +113,19 @@ fn test_lighten_darken() {
 	assert color.desaturate(value).eq_approx(desaturated)
 }
 
-fn test_transformation_self() {
+fn test_transform_self() {
 	for item in items_to_test {
 		assert item.hsl.darken(0.1).eq_approx(item.hsl.lighten(-0.1))
 		assert item.hsl.saturate(0.1).eq_approx(item.hsl.desaturate(-0.1))
 	}
+}
+
+fn test_rotate() {
+	color := colors.HSL { 350, 0.8, 0.8 }
+	color_rotated := colors.HSL { 10, 0.8, 0.8 }
+
+	assert color.rotate(20).eq_approx(color_rotated)
+	assert color.rotate(-360).eq_approx(color_rotated)
 }
 
 /*
