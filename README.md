@@ -17,14 +17,14 @@ import colors
 fn main() {
     val := colors.RGB { 100, 150, 20 }
 
-    println('HSL: $val.hsl()')
-    println('HSV: $val.hsv()')
+    println(val.hsl())
+    println(val.hsv())
 }
 ```
 
 ```
-HSL: { H: 83, S: 0.764706, L: 0.333333 }
-HSV: { H: 83, S: 0.866667, V: 0.588235 }
+hsl(83, 76%, 33%)
+hsv(83, 87%, 59%)
 ```
 
 For more details see `colors.v` file.
