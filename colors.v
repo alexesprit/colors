@@ -204,13 +204,12 @@ pub fn (val RGB) hsl() HSL {
 	delta := max - min
 
 	l := (max + min) / 2
-	mut s := f32(0)
 	mut h := 0
 
-	if delta == 0 {
-		s = 0
+	s := if delta == 0 {
+		0
 	} else {
-		s = delta / (1.0 - math.abs(max + min - 1))
+		delta / (1.0 - math.abs(max + min - 1))
 	}
 
 	if delta == 0 {
@@ -240,13 +239,12 @@ pub fn (val RGB) hsv() HSV {
 	delta := max - min
 
 	v := max
-	mut s := f32(0)
 	mut h := 0
 
-	if max == 0 {
-		s = 0.0
+	s := if max == 0 {
+		0.0
 	} else {
-		s = 1.0 - (min / max)
+		1.0 - (min / max)
 	}
 
 	if delta == 0 {
@@ -345,13 +343,13 @@ pub fn (val HSV) hsl() HSL {
 	mut s := 0.0
 
 	if l != 0 {
-	    if l == 1 {
-            s = 0
-        } else if l < 0.5 {
-            s = val.s * val.v / (l * 2.0)
-        } else {
-            s = val.s * val.v / (2.0 - l * 2.0)
-        }
+		s = if l == 1 {
+			0.0
+		} else if l < 0.5 {
+			val.s * val.v / (l * 2.0)
+		} else {
+			val.s * val.v / (2.0 - l * 2.0)
+		}
 	}
 
 	return HSL { h, s, l }
