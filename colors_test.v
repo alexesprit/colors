@@ -111,7 +111,7 @@ fn test_grayscale() {
 	assert color_to_test.grayscale().eq(grayscale_to_test)
 }
 
-fn test_transfort() {
+fn test_transform() {
 	value := 0.05
 	color := colors.HSL { 235, 0.85, 0.85 }
 	darkened := colors.HSL { 235, 0.85, 0.80 }
