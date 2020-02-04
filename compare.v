@@ -50,3 +50,8 @@ pub fn (a HSV) eq(b HSV) bool {
 pub fn (a RGB) eq(b RGB) bool {
 	return a.r == b.r && a.g == b.g && a.b == b.b
 }
+
+// eq_rgb_gx checks if a given RGB and gx.Color structures are equal.
+pub fn eq_rgb_gx(a RGB, b gx.Color) bool {
+	return a.r == b.r && a.g == b.g && a.b == b.b
+}

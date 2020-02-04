@@ -4,6 +4,7 @@
 
 module colors
 
+import gx
 import math
 
 /*
@@ -80,6 +81,11 @@ pub fn (val RGB) hsv() HSV {
 	return HSV { h, s, v }
 }
 
+// gx converts RGB to gx.Color structure.
+pub fn (val RGB) gx() gx.Color {
+	return gx.Color { r: val.r, g: val.g, b: val.b }
+}
+
 /*
  * HSL section.
  */
@@ -147,6 +153,11 @@ pub fn (val HSL) hsv() HSV {
 	s := 2.0 * s1 / (val.l + s1)
 
 	return HSV { h, s, v }
+}
+
+// gx converts HSL to gx.Color structure.
+pub fn (val HSL) gx() gx.Color {
+	return val.rgb().gx()
 }
 
 /*
@@ -224,4 +235,28 @@ pub fn (val HSV) rgb() RGB {
 	b := round_int(b1 * 255)
 
 	return RGB { r, g, b }
+}
+
+// gx converts HSL to gx.Color structure.
+pub fn (val HSV) gx() gx.Color {
+	return val.rgb().gx()
+}
+
+/*
+ * gx.Color section.
+ */
+
+// rgb_from_gx converts gx.Color structure to RGB structure.
+pub fn rgb_from_gx(c gx.Color) RGB {
+	return RGB { r: c.r, g: c.g, b: c.b }
+}
+
+// rgb_from_gx converts gx.Color structure to HSL structure.
+pub fn hsl_from_gx(c gx.Color) HSL {
+	return rgb_from_gx(c).hsl()
+}
+
+// rgb_from_gx converts gx.Color structure to HSV structure.
+pub fn hsv_from_gx(c gx.Color) HSV {
+	return rgb_from_gx(c).hsv()
 }

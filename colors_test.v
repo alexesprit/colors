@@ -1,30 +1,35 @@
 import colors
+import gx
 
 struct TestItem {
+	gx gx.Color
 	rgb colors.RGB
 	hsl colors.HSL
 	hsv colors.HSV
-	hex int
 }
 
 const (
 	items_to_test = [
 		TestItem {
+			gx: gx.Color { 255, 125, 10 }
 			rgb: colors.RGB { 255, 125, 10 }
 			hsl: colors.HSL { 28, 1.0, 0.52 }
 			hsv: colors.HSV { 28, 0.961, 1.0 }
 		},
 		TestItem {
+			gx: gx.Color { 125, 255, 10 }
 			rgb: colors.RGB { 125, 255, 10 }
 			hsl: colors.HSL { 92, 1.00, 0.52 }
 			hsv: colors.HSV { 92, 0.961, 1.0 },
 		},
 		TestItem {
+			gx: gx.Color { 10, 125, 255 }
 			rgb: colors.RGB { 10, 125, 255 }
 			hsl: colors.HSL { 212, 1.00, 0.52 }
 			hsv: colors.HSV { 212, 0.961, 1.0 }
 		},
 		TestItem {
+			gx: gx.Color { 50, 100, 150 }
 			rgb: colors.RGB { 50, 100, 150 }
 			hsl: colors.HSL { 210, 0.50, 0.392 }
 			hsv: colors.HSV { 210, 0.667, 0.588 }
@@ -49,6 +54,13 @@ fn test_self() {
 		// HSV
 		assert item.hsv.hsl().hsv().eq_approx(item.hsv)
 		assert item.hsv.rgb().hsv().eq_approx(item.hsv)
+
+		// gx.Color
+		converted_gx := item.rgb.gx()
+		assert colors.eq_rgb_gx(item.rgb, converted_gx)
+
+		converted_rgb := colors.rgb_from_gx(item.gx)
+		assert colors.eq_rgb_gx(converted_rgb, item.gx)
 	}
 }
 
