@@ -154,9 +154,9 @@ pub fn (a RGB) eq(b RGB) bool {
 
 pub fn (val RGB) grayscale() RGB {
 	gray :=
-		round_int(f32(val.r) * 0.299) +
-		round_int(f32(val.g) * 0.587) +
-		round_int(f32(val.b) * 0.114)
+		round_int(0.299 * val.r) +
+		round_int(0.587 * val.g) +
+		round_int(0.114 * val.b)
 
 	return RGB { gray, gray, gray }
 }
@@ -314,9 +314,9 @@ pub fn (val HSL) rgb() RGB {
 
 	m := val.l - c / 2.0
 
-	r := round_int((r1 + m) * 255.0)
-	g := round_int((g1 + m) * 255.0)
-	b := round_int((b1 + m) * 255.0)
+	r := round_int((r1 + m) * 255)
+	g := round_int((g1 + m) * 255)
+	b := round_int((b1 + m) * 255)
 
 	return RGB { r, g, b }
 }
@@ -402,9 +402,9 @@ pub fn (val HSV) rgb() RGB {
 		else {}
 	}
 
-	r := round_int(r1 * 255.0)
-	g := round_int(g1 * 255.0)
-	b := round_int(b1 * 255.0)
+	r := round_int(r1 * 255)
+	g := round_int(g1 * 255)
+	b := round_int(b1 * 255)
 
 	return RGB { r, g, b }
 }
