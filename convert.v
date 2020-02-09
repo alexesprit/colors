@@ -13,9 +13,7 @@ import math
 
 // hsl converts RGB to HSL.
 pub fn (val RGB) hsl() HSL {
-	r := f32(val.r) / 255
-	g := f32(val.g) / 255
-	b := f32(val.b) / 255
+	r, g, b := rgb_to_float(val)
 
 	max := max_value(r, g, b)
 	min := min_value(r, g, b)
@@ -48,9 +46,7 @@ pub fn (val RGB) hsl() HSL {
 
 // hsl converts RGB to HSV.
 pub fn (val RGB) hsv() HSV {
-	r := f32(val.r) / 255
-	g := f32(val.g) / 255
-	b := f32(val.b) / 255
+	r, g, b := rgb_to_float(val)
 
 	max := max_value(r, g, b)
 	min := min_value(r, g, b)

@@ -1,5 +1,6 @@
 import colors
 import gx
+import math
 
 struct TestItem {
 	gx gx.Color
@@ -39,6 +40,12 @@ const (
 	color_to_test = colors.RGB { 0xFF, 0x99, 0x33 }
 	grayscale_to_test = colors.RGB { 0xAC, 0xAC, 0xAC }
 	hex_to_test = 0xFF9933
+	luminance_to_test = 0.442815
+
+	white_color = colors.RGB { 0xFF, 0xFF, 0xFF }
+	black_color = colors.RGB { 0x00, 0x00, 0x00 }
+
+	float_compare_threshold = 1e-6
 )
 
 fn test_self() {
@@ -109,6 +116,14 @@ fn test_from() {
 
 fn test_grayscale() {
 	assert color_to_test.grayscale().eq(grayscale_to_test)
+}
+
+fn test_luminance() {
+	assert black_color.luminance() == 0.0
+	assert white_color.luminance() == 1.0
+
+	diff := math.abs(color_to_test.luminance() - luminance_to_test)
+	assert diff < float_compare_threshold
 }
 
 fn test_transform() {
