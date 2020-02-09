@@ -102,3 +102,16 @@ pub fn (val RGB) hex() string {
 	color := (val.r << 16) & 0xFF0000 | (val.g << 8) & 0xFF00 | val.b & 0xFF
 	return color.hex()
 }
+
+/*
+ * Basic functions.
+ */
+
+pub fn (val RGB) is_dark() bool {
+	y := calc_yiq_y(val)
+	return y < 128
+}
+
+pub fn (val RGB) is_light() bool {
+	return !val.is_dark()
+}

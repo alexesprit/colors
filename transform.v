@@ -11,12 +11,8 @@ enum Channel {
 }
 
 pub fn (val RGB) grayscale() RGB {
-	gray :=
-		round_int(0.299 * val.r) +
-		round_int(0.587 * val.g) +
-		round_int(0.114 * val.b)
-
-	return RGB { gray, gray, gray }
+	y := round_int(calc_yiq_y(val))
+	return RGB { y, y, y }
 }
 
 pub fn (val RGB) luminance() f32 {

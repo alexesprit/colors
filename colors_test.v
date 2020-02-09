@@ -110,6 +110,17 @@ fn test_from() {
 	assert color.eq(color_to_test)
 }
 
+fn test_is_dark() {
+	assert black_color.is_dark()
+	assert white_color.is_light()
+
+	light_orange := colors.RGB { 0xFA, 0xA2, 0x3F }
+	dark_blue := colors.RGB { 0x39, 0x4C, 0x9A }
+
+	assert light_orange.is_light()
+	assert dark_blue.is_dark()
+}
+
 /*
  * Transformation.
  */
