@@ -133,11 +133,7 @@ pub fn (val HSL) rgb() RGB {
 
 	m := val.l - c / 2.0
 
-	r := round_int((r1 + m) * 255)
-	g := round_int((g1 + m) * 255)
-	b := round_int((b1 + m) * 255)
-
-	return RGB { r, g, b }
+	return float_to_rgb(r1 + m, g1 + m, b1 + m)
 }
 
 // hsl converts HSL to RGB.
@@ -226,11 +222,7 @@ pub fn (val HSV) rgb() RGB {
 		else {}
 	}
 
-	r := round_int(r1 * 255)
-	g := round_int(g1 * 255)
-	b := round_int(b1 * 255)
-
-	return RGB { r, g, b }
+	return float_to_rgb(r1, g1, b1)
 }
 
 // gx converts HSL to gx.Color structure.

@@ -52,6 +52,14 @@ fn rgb_to_float(rgb RGB) (f32, f32, f32) {
 		f32(rgb.b) / max_rgb_channel_value
 }
 
+fn float_to_rgb(r, g, b f32) RGB {
+	return RGB {
+		round_int(r * max_rgb_channel_value),
+		round_int(g * max_rgb_channel_value),
+		round_int(b * max_rgb_channel_value)
+	}
+}
+
 fn calc_yiq_y(val RGB) f32 {
 	return 0.299 * val.r + 0.587 * val.g + 0.114 * val.b
 }
