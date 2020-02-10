@@ -1,0 +1,9 @@
+{
+    "name": "colors",
+    "version": "0.2.0",
+    "author": [
+        "alexesprit"
+    ],
+    "repo": "https://github.com/alexesprit/colors",
+    "dependencies": []
+}
