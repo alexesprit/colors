@@ -52,11 +52,12 @@ pub fn from(input int) ?RGB {
 }
 
 pub fn parse(input string) ?RGB {
-	mut raw_value := input
-	if raw_value.starts_with('0x') {
-		raw_value = raw_value[2..]
-	} else if raw_value.starts_with('#') {
-		raw_value = raw_value[1..]
+	mut raw_value := if input.starts_with('0x') {
+		input[2..]
+	} else if input.starts_with('#') {
+		input[1..]
+	} else {
+		input
 	}
 
 	if raw_value.len == 3 && input.starts_with('#') {
