@@ -58,6 +58,7 @@ const (
 
 	color_to_test = colors.RGB { 0xFF, 0x99, 0x33 }
 	grayscale_to_test = colors.RGB { 0xAC, 0xAC, 0xAC }
+	invert_to_test = colors.RGB { 0x00, 0x66, 0xCC }
 	hex_to_test = 0xFF9933
 	luminance_to_test = 0.442815
 	contrast_ratio_to_test = 2.130618
@@ -160,6 +161,12 @@ fn test_contrast_score() {
 /*
  * Transformation.
  */
+
+fn test_invert() {
+	assert color_to_test.invert().eq(invert_to_test)
+	assert black_color.invert().eq(white_color)
+	assert white_color.invert().eq(black_color)
+}
 
 fn test_grayscale() {
 	assert color_to_test.grayscale().eq(grayscale_to_test)

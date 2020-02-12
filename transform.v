@@ -10,6 +10,15 @@ enum Channel {
 	red green blue
 }
 
+// invert inverts a color.
+pub fn (val RGB) invert() RGB {
+	return RGB {
+		r: max_rgb_channel_value - val.r,
+		g: max_rgb_channel_value - val.g,
+		b: max_rgb_channel_value - val.b
+	}
+}
+
 // lighten changes lightness of a given HSL struct and returns new struct
 pub fn (val HSL) lighten(value f32) HSL {
 	l := between(val.l + value, 0, 1)
