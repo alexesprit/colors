@@ -163,3 +163,17 @@ pub fn (a RGB) contrast_ratio(b RGB) f32 {
 
 	return (max_lum + 0.05) / (min_lum + 0.05)
 }
+
+// contrast_score returns a contrast score between two colors.
+pub fn (a RGB) contrast_score(b RGB) string {
+	// NOTE: Does not support AAA Large and AA Large scores
+	contrast := a.contrast_ratio(b)
+
+	return if contrast >= 7.0 {
+		'AAA'
+	} else if contrast >= 4.5 {
+		'AA'
+	} else {
+		'FAIL'
+	}
+}

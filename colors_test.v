@@ -9,6 +9,11 @@ struct TestItem {
 	hsv colors.HSV
 }
 
+struct ContrastTestItem {
+	color colors.RGB
+	score string
+}
+
 const (
 	items_to_test = [
 		TestItem {
@@ -34,6 +39,20 @@ const (
 			rgb: colors.RGB { 50, 100, 150 }
 			hsl: colors.HSL { 210, 0.50, 0.392 }
 			hsv: colors.HSV { 210, 0.667, 0.588 }
+		}
+	]
+	contrast_score_to_test = [
+		ContrastTestItem {
+			color: colors.RGB { 0x59, 0x59, 0x59 },
+			score: 'AAA'
+		},
+		ContrastTestItem {
+			color: colors.RGB { 0x75, 0x75, 0x75 },
+			score: 'AA'
+		},
+		ContrastTestItem {
+			color: colors.RGB { 0xBB, 0xBB, 0xBB },
+			score: 'FAIL'
 		}
 	]
 
@@ -130,6 +149,12 @@ fn test_contrast_ratio() {
 
 	assert black_color.contrast_ratio(white_color) == colors.max_contrast_ratio
 	assert white_color.contrast_ratio(white_color) == colors.min_contrast_ratio
+}
+
+fn test_contrast_score() {
+	for item in contrast_score_to_test {
+		assert item.color.contrast_score(white_color) == item.score
+	}
 }
 
 /*
