@@ -45,6 +45,8 @@ const (
 
 	white_color = colors.RGB { 0xFF, 0xFF, 0xFF }
 	black_color = colors.RGB { 0x00, 0x00, 0x00 }
+	light_orange = colors.RGB { 0xFA, 0xA2, 0x3F }
+	dark_blue = colors.RGB { 0x39, 0x4C, 0x9A }
 
 	float_compare_threshold = 1e-6
 )
@@ -113,13 +115,12 @@ fn test_from() {
 
 fn test_is_dark() {
 	assert black_color.is_dark()
-	assert white_color.is_light()
-
-	light_orange := colors.RGB { 0xFA, 0xA2, 0x3F }
-	dark_blue := colors.RGB { 0x39, 0x4C, 0x9A }
-
-	assert light_orange.is_light()
 	assert dark_blue.is_dark()
+}
+
+fn test_is_light() {
+	assert white_color.is_light()
+	assert light_orange.is_light()
 }
 
 fn test_contrast_ratio() {
