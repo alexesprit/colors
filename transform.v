@@ -10,30 +10,6 @@ enum Channel {
 	red green blue
 }
 
-pub fn (val RGB) grayscale() RGB {
-	y := round_int(calc_yiq_y(val))
-	return RGB { y, y, y }
-}
-
-pub fn (val RGB) luminance() f32 {
-	r, g, b := rgb_to_float(val)
-	channels := [r, g, b]
-	mut lum := [0.0, 0.0, 0.0]
-
-	for i, c in channels {
-		lum[i] = if c <= 0.03928 {
-			c / 12.92
-		} else {
-			math.pow((c + 0.055) / 1.055, 2.4)
-		}
-	}
-
-	return
-		0.2126 * lum[Channel.red] +
-		0.7152 * lum[Channel.green] +
-		0.0722 * lum[Channel.blue]
-}
-
 // lighten changes lightness of a given HSL struct and returns new struct
 pub fn (val HSL) lighten(value f32) HSL {
 	l := between(val.l + value, 0, 1)
