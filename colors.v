@@ -39,6 +39,7 @@ pub:
  * Constructors.
  */
 
+// from returns an RGB color model from an integer representation.
 pub fn from(input int) ?RGB {
 	if (input < 0) {
 		return error('Negative input: $input')
@@ -51,6 +52,7 @@ pub fn from(input int) ?RGB {
 	return RGB { r, g, b }
 }
 
+// parse parses a given string and returns an RGB color model.
 pub fn parse(input string) ?RGB {
 	mut raw_value := if input.starts_with('0x') {
 		input[2..]
@@ -108,20 +110,24 @@ pub fn (val RGB) hex() string {
  * Basic functions.
  */
 
+// is_light checks if a color is dark.
 pub fn (val RGB) is_dark() bool {
 	y := calc_yiq_y(val)
 	return y < 128
 }
 
+// is_light checks if a color is light.
 pub fn (val RGB) is_light() bool {
 	return !val.is_dark()
 }
 
+// grayscale returns a grayscale color from a true color.
 pub fn (val RGB) grayscale() RGB {
 	y := round_int(calc_yiq_y(val))
 	return RGB { y, y, y }
 }
 
+// luminance returns a relative luminance of a color.
 pub fn (val RGB) luminance() f32 {
 	r, g, b := rgb_to_float(val)
 	channels := [r, g, b]
