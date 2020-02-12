@@ -41,6 +41,7 @@ const (
 	grayscale_to_test = colors.RGB { 0xAC, 0xAC, 0xAC }
 	hex_to_test = 0xFF9933
 	luminance_to_test = 0.442815
+	contrast_ratio_to_test = 2.130618
 
 	white_color = colors.RGB { 0xFF, 0xFF, 0xFF }
 	black_color = colors.RGB { 0x00, 0x00, 0x00 }
@@ -119,6 +120,15 @@ fn test_is_dark() {
 
 	assert light_orange.is_light()
 	assert dark_blue.is_dark()
+}
+
+fn test_contrast_ratio() {
+	contrast_ratio := color_to_test.contrast_ratio(white_color)
+	diff := math.abs(contrast_ratio - contrast_ratio_to_test)
+	assert diff < float_compare_threshold
+
+	assert black_color.contrast_ratio(white_color) == colors.max_contrast_ratio
+	assert white_color.contrast_ratio(white_color) == colors.min_contrast_ratio
 }
 
 /*

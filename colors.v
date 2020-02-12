@@ -9,7 +9,13 @@
 
 module colors
 
+import math
 import strconv
+
+pub const (
+	min_contrast_ratio = 1.0
+	max_contrast_ratio = 21.0
+)
 
 // Structure representing RGB color model.
 pub struct RGB {
@@ -145,4 +151,15 @@ pub fn (val RGB) luminance() f32 {
 		0.2126 * lum[Channel.red] +
 		0.7152 * lum[Channel.green] +
 		0.0722 * lum[Channel.blue]
+}
+
+// contrast_ratio returns a contrast ratio between two colors.
+pub fn (a RGB) contrast_ratio(b RGB) f32 {
+	a_lum := a.luminance()
+	b_lum := b.luminance()
+
+	max_lum := math.max(a_lum, b_lum)
+	min_lum := math.min(a_lum, b_lum)
+
+	return (max_lum + 0.05) / (min_lum + 0.05)
 }
