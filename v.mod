@@ -1,5 +1,5 @@
 Module {
-	name:    'colors'
+	name: 'colors'
 	version: '0.2.0'
-    deps:    []
+	deps: []
 }
