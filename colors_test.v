@@ -136,6 +136,14 @@ fn test_from() {
 	assert color.eq(color_to_test)
 }
 
+fn test_from_invalid() {
+	color := colors.from(-1) or {
+		assert true
+		return
+	}
+	assert false
+}
+
 fn test_is_dark() {
 	assert black_color.is_dark()
 	assert dark_blue.is_dark()
