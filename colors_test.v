@@ -116,12 +116,15 @@ fn test_parse() {
 		return
 	}
 	assert black_color_1.eq(black_color_2)
+}
 
+fn test_parse_invalid() {
 	invalid_raw_color := '%FF9933'
 	colors.parse(invalid_raw_color) or {
 		assert true
 		return
 	}
+	assert false
 }
 
 fn test_from() {
