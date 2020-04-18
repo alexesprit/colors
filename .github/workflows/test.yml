@@ -10,5 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - uses: nocturlab/setup-vlang-action@v1
+      with:
+        v-version: master
     - name: Run tests
-      run: docker build .
+      run: v test .
