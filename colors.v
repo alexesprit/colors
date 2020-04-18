@@ -47,7 +47,7 @@ pub:
 
 // from returns an RGB color model from an integer representation.
 pub fn from(input int) ?RGB {
-	if (input < 0) {
+	if input < 0 {
 		return error('Negative input: $input')
 	}
 

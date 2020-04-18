@@ -32,7 +32,7 @@ pub fn (val RGB) hsl() HSL {
 		h = 0
 	} else if max == r {
 		h = round_int(60.0 * (g - b) / delta)
-		if (g < b) {
+		if g < b {
 			h += 360
 		}
 	} else if max == g {
@@ -65,7 +65,7 @@ pub fn (val RGB) hsv() HSV {
 		h = 0
 	} else if max == r {
 		h = round_int(60.0 * (g - b) / delta)
-		if (g < b) {
+		if g < b {
 			h += 360
 		}
 	} else if max == g {

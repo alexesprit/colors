@@ -4,6 +4,8 @@
 
 module colors
 
+import gx
+
 const (
 	HueThreshold = 1
 	SaturationThreshold = 0.001
