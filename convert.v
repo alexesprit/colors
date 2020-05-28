@@ -136,7 +136,7 @@ pub fn (val HSL) rgb() RGB {
 	return float_to_rgb(r1 + m, g1 + m, b1 + m)
 }
 
-// hsl converts HSL to RGB.
+// hsl converts HSL to HSV.
 pub fn (val HSL) hsv() HSV {
 	s1 := val.s * (if val.l < 0.5 { val.l } else { 1.0 - val.l })
 
@@ -175,7 +175,7 @@ pub fn (val HSV) hsl() HSL {
 	return HSL { h, s, l }
 }
 
-// rgb converts HSV to HSL.
+// rgb converts HSV to RGB.
 pub fn (val HSV) rgb() RGB {
 	v := val.v
 	hi := (val.h / 60) % 6
