@@ -9,10 +9,22 @@ A library for color transformation and conversion between different color models
 -   Functions to return a string representation of a color model
 -   Functions to transform colors
 
+## Installation
+
+You can install this module using the following command:
+
+```sh
+# Install via `vpm`
+> v install alexesprit.colors
+
+# Install via `vpkg`
+> vpkg get colors
+```
+
 ## Usage
 
 ```v
-import colors
+import alexesprit.colors
 
 fn main() {
     val := colors.RGB { 100, 150, 20 }
