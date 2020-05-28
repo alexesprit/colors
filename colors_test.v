@@ -137,7 +137,7 @@ fn test_from() {
 }
 
 fn test_from_invalid() {
-	color := colors.from(-1) or {
+	colors.from(-1) or {
 		assert true
 		return
 	}
