@@ -9,9 +9,9 @@ jobs:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: nocturlab/setup-vlang-action@master
-      with:
-        v-version: master
-    - name: Run tests
-      run: v test .
+      - uses: actions/checkout@v1
+      - uses: nocturlab/setup-vlang-action@master
+        with:
+          v-version: master
+      - name: Run tests
+        run: v test .
