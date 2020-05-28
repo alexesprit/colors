@@ -1,4 +1,4 @@
-# colors
+# colors [![Latest version][version-badge]][version-url] [![Workflow status][workflow-badge]][workflow-url]
 
 A library for color transformation and conversion between different color models written in V.
 
@@ -40,3 +40,8 @@ hsv(83, 87%, 59%)
 ```
 
 For more details see `colors.v` file.
+
+[version-badge]: https://img.shields.io/github/v/release/alexesprit/colors?logo=github&logoColor=white
+[version-url]: https://github.com/alexesprit/colors/releases/latest
+[workflow-badge]: https://img.shields.io/github/workflow/status/alexesprit/colors/Test?label=test&logo=github&logoColor=white
+[workflow-url]: https://github.com/alexesprit/colors/actions?query=workflow%3ATest
