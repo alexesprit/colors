@@ -79,7 +79,7 @@ pub fn (val RGB) hsv() HSV {
 
 // gx converts RGB to gx.Color structure.
 pub fn (val RGB) gx() gx.Color {
-	return gx.Color { r: val.r, g: val.g, b: val.b }
+	return gx.Color { r: byte(val.r), g: byte(val.g), b: byte(val.b) }
 }
 
 /*
@@ -89,7 +89,7 @@ pub fn (val RGB) gx() gx.Color {
 // hsl converts HSL to RGB.
 pub fn (val HSL) rgb() RGB {
 	c := (1.0 - math.abs(2.0 * val.l - 1.0)) * val.s
-	h := f32(val.h) / 60.0
+	h := f64(val.h) / 60.0
 	x := c * (1.0 - math.abs(math.fmod(h, 2.0) - 1.0))
 
 	mut r1 := 0.0

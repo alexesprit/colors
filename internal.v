@@ -40,19 +40,19 @@ fn is_number(input string) bool {
 	return true
 }
 
-fn to_percent(value f32) string {
+fn to_percent(value f64) string {
 	percent := round_int(value * 100)
 	return '$percent%'
 }
 
-fn rgb_to_float(rgb RGB) (f32, f32, f32) {
+fn rgb_to_float(rgb RGB) (f64, f64, f64) {
 	return
-		f32(rgb.r) / max_rgb_channel_value,
-		f32(rgb.g) / max_rgb_channel_value,
-		f32(rgb.b) / max_rgb_channel_value
+		f64(rgb.r) / max_rgb_channel_value,
+		f64(rgb.g) / max_rgb_channel_value,
+		f64(rgb.b) / max_rgb_channel_value
 }
 
-fn float_to_rgb(r, g, b f32) RGB {
+fn float_to_rgb(r, g, b f64) RGB {
 	return RGB {
 		round_int(r * max_rgb_channel_value),
 		round_int(g * max_rgb_channel_value),
@@ -60,6 +60,6 @@ fn float_to_rgb(r, g, b f32) RGB {
 	}
 }
 
-fn calc_yiq_y(val RGB) f32 {
-	return 0.299 * val.r + 0.587 * val.g + 0.114 * val.b
+fn calc_yiq_y(val RGB) f64 {
+	return 0.299 * f64(val.r) + 0.587 * f64(val.g) + 0.114 * f64(val.b)
 }

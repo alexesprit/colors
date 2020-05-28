@@ -19,19 +19,19 @@ const (
 		TestItem {
 			gx: gx.Color { 255, 125, 10 }
 			rgb: colors.RGB { 255, 125, 10 }
-			hsl: colors.HSL { 28, 1.0, 0.52 }
+			hsl: colors.HSL { 28, 1.0, 0.5196 }
 			hsv: colors.HSV { 28, 0.961, 1.0 }
 		},
 		TestItem {
 			gx: gx.Color { 125, 255, 10 }
 			rgb: colors.RGB { 125, 255, 10 }
-			hsl: colors.HSL { 92, 1.00, 0.52 }
+			hsl: colors.HSL { 92, 1.00, 0.5196 }
 			hsv: colors.HSV { 92, 0.961, 1.0 },
 		},
 		TestItem {
 			gx: gx.Color { 10, 125, 255 }
 			rgb: colors.RGB { 10, 125, 255 }
-			hsl: colors.HSL { 212, 1.00, 0.52 }
+			hsl: colors.HSL { 212, 1.00, 0.5196 }
 			hsv: colors.HSV { 212, 0.961, 1.0 }
 		},
 		TestItem {

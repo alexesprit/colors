@@ -29,16 +29,16 @@ pub:
 pub struct HSL {
 pub:
 	h int
-	s f32
-	l f32
+	s f64
+	l f64
 }
 
 // Structure representing HSV color model.
 pub struct HSV {
 pub:
 	h int
-	s f32
-	v f32
+	s f64
+	v f64
 }
 
 /*
@@ -134,7 +134,7 @@ pub fn (val RGB) grayscale() RGB {
 }
 
 // luminance returns a relative luminance of a color.
-pub fn (val RGB) luminance() f32 {
+pub fn (val RGB) luminance() f64 {
 	r, g, b := rgb_to_float(val)
 	channels := [r, g, b]
 	mut lum := [0.0, 0.0, 0.0]
@@ -154,7 +154,7 @@ pub fn (val RGB) luminance() f32 {
 }
 
 // contrast_ratio returns a contrast ratio between two colors.
-pub fn (a RGB) contrast_ratio(b RGB) f32 {
+pub fn (a RGB) contrast_ratio(b RGB) f64 {
 	a_lum := a.luminance()
 	b_lum := b.luminance()
 
