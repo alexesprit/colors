@@ -1,0 +1,21 @@
+name: Format
+on:
+  push:
+    branches: [master]
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  format:
+    name: Check formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v1
+
+      - name: Install V
+        uses: nocturlab/setup-vlang-action@master
+        with:
+          v-version: master
+
+      - name: Check formatting
+        run: v fmt -verify .
