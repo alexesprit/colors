@@ -3,7 +3,7 @@ import gx
 import math
 
 struct TestItem {
-	gx gx.Color
+	gx  gx.Color
 	rgb colors.RGB
 	hsl colors.HSL
 	hsv colors.HSV
@@ -15,59 +15,56 @@ struct ContrastTestItem {
 }
 
 const (
-	items_to_test = [
-		TestItem {
-			gx: gx.Color { 255, 125, 10 }
-			rgb: colors.RGB { 255, 125, 10 }
-			hsl: colors.HSL { 28, 1.0, 0.5196 }
-			hsv: colors.HSV { 28, 0.961, 1.0 }
+	items_to_test           = [
+		TestItem{
+			gx: gx.Color{255, 125, 10}
+			rgb: colors.RGB{255, 125, 10}
+			hsl: colors.HSL{28, 1.0, 0.5196}
+			hsv: colors.HSV{28, 0.961, 1.0}
 		},
-		TestItem {
-			gx: gx.Color { 125, 255, 10 }
-			rgb: colors.RGB { 125, 255, 10 }
-			hsl: colors.HSL { 92, 1.00, 0.5196 }
-			hsv: colors.HSV { 92, 0.961, 1.0 },
+		TestItem{
+			gx: gx.Color{125, 255, 10}
+			rgb: colors.RGB{125, 255, 10}
+			hsl: colors.HSL{92, 1.00, 0.5196}
+			hsv: colors.HSV{92, 0.961, 1.0}
 		},
-		TestItem {
-			gx: gx.Color { 10, 125, 255 }
-			rgb: colors.RGB { 10, 125, 255 }
-			hsl: colors.HSL { 212, 1.00, 0.5196 }
-			hsv: colors.HSV { 212, 0.961, 1.0 }
+		TestItem{
+			gx: gx.Color{10, 125, 255}
+			rgb: colors.RGB{10, 125, 255}
+			hsl: colors.HSL{212, 1.00, 0.5196}
+			hsv: colors.HSV{212, 0.961, 1.0}
 		},
-		TestItem {
-			gx: gx.Color { 50, 100, 150 }
-			rgb: colors.RGB { 50, 100, 150 }
-			hsl: colors.HSL { 210, 0.50, 0.392 }
-			hsv: colors.HSV { 210, 0.667, 0.588 }
-		}
+		TestItem{
+			gx: gx.Color{50, 100, 150}
+			rgb: colors.RGB{50, 100, 150}
+			hsl: colors.HSL{210, 0.50, 0.392}
+			hsv: colors.HSV{210, 0.667, 0.588}
+		},
 	]
-	contrast_score_to_test = [
-		ContrastTestItem {
-			color: colors.RGB { 0x59, 0x59, 0x59 },
+	contrast_score_to_test  = [
+		ContrastTestItem{
+			color: colors.RGB{0x59, 0x59, 0x59}
 			score: 'AAA'
 		},
-		ContrastTestItem {
-			color: colors.RGB { 0x75, 0x75, 0x75 },
+		ContrastTestItem{
+			color: colors.RGB{0x75, 0x75, 0x75}
 			score: 'AA'
 		},
-		ContrastTestItem {
-			color: colors.RGB { 0xBB, 0xBB, 0xBB },
+		ContrastTestItem{
+			color: colors.RGB{0xBB, 0xBB, 0xBB}
 			score: 'FAIL'
-		}
+		},
 	]
-
-	color_to_test = colors.RGB { 0xFF, 0x99, 0x33 }
-	grayscale_to_test = colors.RGB { 0xAC, 0xAC, 0xAC }
-	invert_to_test = colors.RGB { 0x00, 0x66, 0xCC }
-	hex_to_test = 0xFF9933
-	luminance_to_test = 0.442815
-	contrast_ratio_to_test = 2.130618
-
-	white_color = colors.RGB { 0xFF, 0xFF, 0xFF }
-	black_color = colors.RGB { 0x00, 0x00, 0x00 }
-	light_orange = colors.RGB { 0xFA, 0xA2, 0x3F }
-	dark_blue = colors.RGB { 0x39, 0x4C, 0x9A }
-
+	color_to_test           = colors.RGB{0xFF, 0x99, 0x33}
+	grayscale_to_test       = colors.RGB{0xAC, 0xAC, 0xAC}
+	invert_to_test          = colors.RGB{0x00, 0x66, 0xCC}
+	hex_to_test             = 0xFF9933
+	luminance_to_test       = 0.442815
+	contrast_ratio_to_test  = 2.130618
+	white_color             = colors.RGB{0xFF, 0xFF, 0xFF}
+	black_color             = colors.RGB{0x00, 0x00, 0x00}
+	light_orange            = colors.RGB{0xFA, 0xA2, 0x3F}
+	dark_blue               = colors.RGB{0x39, 0x4C, 0x9A}
 	float_compare_threshold = 1e-6
 )
 
@@ -76,19 +73,15 @@ fn test_self() {
 		// RGB
 		assert item.rgb.hsl().rgb().eq_approx(item.rgb)
 		assert item.rgb.hsv().rgb().eq_approx(item.rgb)
-
 		// HSL
 		assert item.hsl.rgb().hsl().eq_approx(item.hsl)
 		assert item.hsl.hsv().hsl().eq_approx(item.hsl)
-
 		// HSV
 		assert item.hsv.hsl().hsv().eq_approx(item.hsv)
 		assert item.hsv.rgb().hsv().eq_approx(item.hsv)
-
 		// gx.Color
 		converted_gx := item.rgb.gx()
 		assert colors.eq_rgb_gx(item.rgb, converted_gx)
-
 		converted_rgb := colors.rgb_from_gx(item.gx)
 		assert colors.eq_rgb_gx(converted_rgb, item.gx)
 	}
@@ -100,17 +93,14 @@ fn test_hex() {
 
 fn test_parse() {
 	raw_colors := ['FF9933', '#FF9933', '0xFF9933', '#f93']
-
 	for raw_color in raw_colors {
 		color := colors.parse(raw_color) or {
 			assert false
 			continue
 		}
-
 		assert color.eq(color_to_test)
 	}
-
-	black_color_1 := colors.RGB { 0, 0, 0 }
+	black_color_1 := colors.RGB{0, 0, 0}
 	black_color_2 := colors.parse('0x000000') or {
 		assert false
 		return
@@ -132,7 +122,6 @@ fn test_from() {
 		assert false
 		return
 	}
-
 	assert color.eq(color_to_test)
 }
 
@@ -158,7 +147,6 @@ fn test_contrast_ratio() {
 	contrast_ratio := color_to_test.contrast_ratio(white_color)
 	diff := math.abs(contrast_ratio - contrast_ratio_to_test)
 	assert diff < float_compare_threshold
-
 	assert black_color.contrast_ratio(white_color) == colors.max_contrast_ratio
 	assert white_color.contrast_ratio(white_color) == colors.min_contrast_ratio
 }
@@ -169,10 +157,7 @@ fn test_contrast_score() {
 	}
 }
 
-/*
- * Transformation.
- */
-
+// * Transformation.
 fn test_invert() {
 	assert color_to_test.invert().eq(invert_to_test)
 	assert black_color.invert().eq(white_color)
@@ -186,19 +171,17 @@ fn test_grayscale() {
 fn test_luminance() {
 	assert black_color.luminance() == 0.0
 	assert white_color.luminance() == 1.0
-
 	diff := math.abs(color_to_test.luminance() - luminance_to_test)
 	assert diff < float_compare_threshold
 }
 
 fn test_transform() {
 	value := 0.05
-	color := colors.HSL { 235, 0.85, 0.85 }
-	darkened := colors.HSL { 235, 0.85, 0.80 }
-	lightened := colors.HSL { 235, 0.85, 0.90 }
-	saturated := colors.HSL { 235, 0.90, 0.85 }
-	desaturated := colors.HSL { 235, 0.80, 0.85 }
-
+	color := colors.HSL{235, 0.85, 0.85}
+	darkened := colors.HSL{235, 0.85, 0.80}
+	lightened := colors.HSL{235, 0.85, 0.90}
+	saturated := colors.HSL{235, 0.90, 0.85}
+	desaturated := colors.HSL{235, 0.80, 0.85}
 	assert color.darken(value).eq_approx(darkened)
 	assert color.lighten(value).eq_approx(lightened)
 	assert color.saturate(value).eq_approx(saturated)
@@ -213,17 +196,13 @@ fn test_transform_self() {
 }
 
 fn test_rotate() {
-	color := colors.HSL { 350, 0.8, 0.8 }
-	color_rotated := colors.HSL { 10, 0.8, 0.8 }
-
+	color := colors.HSL{350, 0.8, 0.8}
+	color_rotated := colors.HSL{10, 0.8, 0.8}
 	assert color.rotate(20).eq_approx(color_rotated)
 	assert color.rotate(-360).eq_approx(color_rotated)
 }
 
-/*
- * RGB section.
- */
-
+// * RGB section.
 fn test_rgb_to_hsl() {
 	for item in items_to_test {
 		val := item.rgb.hsl()
@@ -238,10 +217,7 @@ fn test_rgb_to_hsv() {
 	}
 }
 
-/*
- * HSL section.
- */
-
+// * HSL section.
 fn test_hsl_to_rgb() {
 	for item in items_to_test {
 		val := item.hsl.rgb()
@@ -256,10 +232,7 @@ fn test_hsl_to_hsv() {
 	}
 }
 
-/*
- * HSV section.
- */
-
+// * HSV section.
 fn test_hsv_to_hsl() {
 	for item in items_to_test {
 		val := item.hsv.hsl()

@@ -1,12 +1,11 @@
 /*
- * This module provides structs represent different color models,
+* This module provides structs represent different color models,
  * and functions to work with models:
  *  - functions to convert colors between differen color models
  *  - functions to compare two instances of a color model
  *  - functions to return a string representation of a color model
  *  - functions to transform colors
- */
-
+*/
 module colors
 
 import math
@@ -41,21 +40,15 @@ pub:
 	v f64
 }
 
-/*
- * Constructors.
- */
-
 // from returns an RGB color model from an integer representation.
 pub fn from(input int) ?RGB {
 	if input < 0 {
 		return error('Negative input: $input')
 	}
-
 	r := (input & 0xFF0000) >> 16
 	g := (input & 0xFF00) >> 8
 	b := (input & 0xFF)
-
-	return RGB { r, g, b }
+	return RGB{r, g, b}
 }
 
 // parse parses a given string and returns an RGB color model.
@@ -67,25 +60,18 @@ pub fn parse(input string) ?RGB {
 	} else {
 		input
 	}
-
 	if raw_value.len == 3 && input.starts_with('#') {
 		r := raw_value[0].str()
 		g := raw_value[1].str()
 		b := raw_value[2].str()
 		raw_value = '$r$r$g$g$b$b'
 	}
-
 	if !is_number(raw_value) {
 		return error('Invalid input: $input')
 	}
-
 	value := int(strconv.parse_int(raw_value, 16, 0))
 	return from(value)
 }
-
-/*
- * String representation.
- */
 
 // str returns a string representation of a RGB struct.
 pub fn (val RGB) str() string {
@@ -112,10 +98,6 @@ pub fn (val RGB) hex() string {
 	return color.hex()
 }
 
-/*
- * Basic functions.
- */
-
 // is_light checks if a color is dark.
 pub fn (val RGB) is_dark() bool {
 	y := calc_yiq_y(val)
@@ -130,7 +112,7 @@ pub fn (val RGB) is_light() bool {
 // grayscale returns a grayscale color from a true color.
 pub fn (val RGB) grayscale() RGB {
 	y := round_int(calc_yiq_y(val))
-	return RGB { y, y, y }
+	return RGB{y, y, y}
 }
 
 // luminance returns a relative luminance of a color.
@@ -138,29 +120,18 @@ pub fn (val RGB) luminance() f64 {
 	r, g, b := rgb_to_float(val)
 	channels := [r, g, b]
 	mut lum := [0.0, 0.0, 0.0]
-
 	for i, c in channels {
-		lum[i] = if c <= 0.03928 {
-			c / 12.92
-		} else {
-			math.pow((c + 0.055) / 1.055, 2.4)
-		}
+		lum[i] = if c <= 0.03928 { c / 12.92 } else { math.pow((c + 0.055) / 1.055, 2.4) }
 	}
-
-	return
-		0.2126 * lum[Channel.red] +
-		0.7152 * lum[Channel.green] +
-		0.0722 * lum[Channel.blue]
+	return 0.2126 * lum[Channel.red] + 0.7152 * lum[Channel.green] + 0.0722 * lum[Channel.blue]
 }
 
 // contrast_ratio returns a contrast ratio between two colors.
 pub fn (a RGB) contrast_ratio(b RGB) f64 {
 	a_lum := a.luminance()
 	b_lum := b.luminance()
-
 	max_lum := math.max(a_lum, b_lum)
 	min_lum := math.min(a_lum, b_lum)
-
 	return (max_lum + 0.05) / (min_lum + 0.05)
 }
 
@@ -168,7 +139,6 @@ pub fn (a RGB) contrast_ratio(b RGB) f64 {
 pub fn (a RGB) contrast_score(b RGB) string {
 	// NOTE: Does not support AAA Large and AA Large scores
 	contrast := a.contrast_ratio(b)
-
 	return if contrast >= 7.0 {
 		'AAA'
 	} else if contrast >= 4.5 {
