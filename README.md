@@ -39,12 +39,13 @@ hsl(83, 76%, 33%)
 hsv(83, 87%, 59%)
 ```
 
-For more details see `colors.v` file.
+For more details see the [documentation][docs].
 
 ## License
 
 Licensed under the [MIT License](LICENSE.md).
 
+[docs]: https://alexesprit.com/colors/
 [version-badge]: https://img.shields.io/github/v/release/alexesprit/colors?logo=github&logoColor=white
 [version-url]: https://github.com/alexesprit/colors/releases/latest
 [workflow-badge]: https://img.shields.io/github/workflow/status/alexesprit/colors/Test?label=test&logo=github&logoColor=white
