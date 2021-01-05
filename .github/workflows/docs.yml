@@ -15,7 +15,7 @@ jobs:
       - name: Install V
         uses: nocturlab/setup-vlang-action@v1
         with:
-          v-version: master
+          v-version: 0.2.1
 
       - name: Generate documentation
         uses: test-room-7/action-create-v-docs@v0
