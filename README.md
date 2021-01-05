@@ -4,6 +4,7 @@ A library for color transformation and conversion between different color models
 
 ## Features
 
+-   Structures to represent different color models
 -   Functions to convert colors between different color models
 -   Functions to compare two instances of a color model
 -   Functions to return a string representation of a color model
