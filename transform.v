@@ -1,4 +1,3 @@
-// * Transformation.
 module colors
 
 import math
